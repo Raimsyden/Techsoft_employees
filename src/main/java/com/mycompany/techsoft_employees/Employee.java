@@ -19,6 +19,17 @@ public class Employee {
     private double salary;
     private String startDate;
 
+    // Constructor SIN id (para insertar en BD)
+    public Employee(int idDocument, String name, int age, String role, double salary, String startDate) {
+        this.idDocument = idDocument;
+        this.name = name;
+        this.age = age;
+        this.role = role;
+        this.salary = salary;
+        this.startDate = startDate;
+    }
+
+    // Constructor CON id (para cuando lees desde BD)
     public Employee(int idEmployee, int idDocument, String name, int age, String role, double salary, String startDate) {
         this.idEmployee = idEmployee;
         this.idDocument = idDocument;

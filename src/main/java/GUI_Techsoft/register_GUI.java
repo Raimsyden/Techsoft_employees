@@ -4,9 +4,13 @@
  */
 package GUI_Techsoft;
 
+
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import com.mycompany.techsoft_employees.Employee;
+import com.mycompany.techsoft_employees.EmployeeDAO;
+
 
 
 /**
@@ -89,6 +93,7 @@ public class register_GUI extends javax.swing.JFrame {
         jMainCenter = new javax.swing.JPanel();
         jNavMain = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        Back = new javax.swing.JButton();
         jFooterMain = new javax.swing.JPanel();
         pIdDocument = new javax.swing.JPanel();
         jIdDocument = new javax.swing.JLabel();
@@ -129,20 +134,31 @@ public class register_GUI extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Register a new employee");
 
+        Back.setBackground(new java.awt.Color(51, 51, 51));
+        Back.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Back.setForeground(new java.awt.Color(255, 255, 255));
+        Back.setText("<--");
+        Back.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Back.addActionListener(this::BackActionPerformed);
+
         javax.swing.GroupLayout jNavMainLayout = new javax.swing.GroupLayout(jNavMain);
         jNavMain.setLayout(jNavMainLayout);
         jNavMainLayout.setHorizontalGroup(
             jNavMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jNavMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jNavMainLayout.setVerticalGroup(
             jNavMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jNavMainLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
+                .addGroup(jNavMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Back))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -168,6 +184,7 @@ public class register_GUI extends javax.swing.JFrame {
         jIdDocument.setText("Document number");
         jIdDocument.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        textIdNumebr.setMinimumSize(new java.awt.Dimension(64, 20));
         textIdNumebr.addActionListener(this::textIdNumebrActionPerformed);
 
         javax.swing.GroupLayout pIdDocumentLayout = new javax.swing.GroupLayout(pIdDocument);
@@ -175,7 +192,7 @@ public class register_GUI extends javax.swing.JFrame {
         pIdDocumentLayout.setHorizontalGroup(
             pIdDocumentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jIdDocument, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-            .addComponent(textIdNumebr)
+            .addComponent(textIdNumebr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pIdDocumentLayout.setVerticalGroup(
             pIdDocumentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +281,8 @@ public class register_GUI extends javax.swing.JFrame {
             .addGroup(pRoleLayout.createSequentialGroup()
                 .addComponent(jRole)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(ComboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ComboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pSalary.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -351,18 +369,18 @@ public class register_GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMainCenterLayout.createSequentialGroup()
                 .addComponent(jNavMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pIdDocument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(pIdDocument, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(pName, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(pAge, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(pRole, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(pStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(ButtonSend, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(jFooterMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -388,39 +406,29 @@ public class register_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textIdNumebrActionPerformed
 
-    private void textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textNameActionPerformed
-
-    private void textAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textAgeActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void textStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textStartDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textStartDateActionPerformed
-
     private void ButtonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSendActionPerformed
-        String idDocument;
+
+        int idDocument;
         String name;
         int age;
         String role;
         double salary;
         String startDate;
 
+        // DOCUMENT
         try {
-            idDocument = textIdNumebr.getText().trim();
-            if (idDocument.isEmpty() || !idDocument.matches("\\d+"))
+            String docText = textIdNumebr.getText().trim();
+            if (docText.isEmpty() || !docText.matches("\\d+"))
                 throw new Exception();
+
+            idDocument = Integer.parseInt(docText);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Formato incorrecto en Document", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
+        // NAME
         try {
             name = textName.getText().trim();
             if (name.isEmpty() || !name.matches("[a-zA-Z ]+"))
@@ -430,6 +438,7 @@ public class register_GUI extends javax.swing.JFrame {
             return;
         }
 
+        // AGE
         try {
             age = Integer.parseInt(textAge.getText().trim());
             if (age <= 17)
@@ -439,6 +448,7 @@ public class register_GUI extends javax.swing.JFrame {
             return;
         }
 
+        // ROLE
         try {
             role = ComboRole.getSelectedItem().toString();
             if (role.isEmpty())
@@ -448,6 +458,7 @@ public class register_GUI extends javax.swing.JFrame {
             return;
         }
 
+        // SALARY
         try {
             salary = Double.parseDouble(jTextField6.getText().trim());
             if (salary <= 0)
@@ -457,6 +468,7 @@ public class register_GUI extends javax.swing.JFrame {
             return;
         }
 
+        // START DATE
         try {
             startDate = textStartDate.getText().trim();
             if (startDate.isEmpty())
@@ -466,16 +478,52 @@ public class register_GUI extends javax.swing.JFrame {
             return;
         }
 
-        
-        //Employee dato = new Employee(idDocument, name, age, role, salary, startDate);
-        //EmployeeList.add(dato);   // tu lista
-        //FileManager.saveToFile(EmployeeList); // tu método
-        //JOptionPane.showMessageDialog(this, "Employee registered successfully");
+
+        Employee empleado = new Employee(idDocument, name, age, role, salary, startDate);
+
+
+        EmployeeDAO dao = new EmployeeDAO();
+        boolean guardado = dao.guardar(empleado);
+
+        if (guardado) {
+            JOptionPane.showMessageDialog(this, "Employee registered successfully in database");
+
+            textIdNumebr.setText("");
+            textName.setText("");
+            textAge.setText("");
+            ComboRole.setSelectedIndex(0);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Error saving employee in database", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_ButtonSendActionPerformed
+
+    private void textStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textStartDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textStartDateActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void ComboRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboRoleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboRoleActionPerformed
+
+    private void textAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textAgeActionPerformed
+
+    private void textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNameActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+        main_GUI main = new main_GUI();
+        main.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -503,6 +551,7 @@ public class register_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
     private javax.swing.JButton ButtonSend;
     private javax.swing.JComboBox<String> ComboRole;
     private javax.swing.JLabel jAge;
@@ -513,19 +562,13 @@ public class register_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jMainPanel;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel jName;
-    private javax.swing.JLabel jName4;
-    private javax.swing.JLabel jName5;
     private javax.swing.JPanel jNavMain;
     private javax.swing.JLabel jRole;
     private javax.swing.JLabel jSalary;
     private javax.swing.JLabel jStartDate;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JPanel pAge;
     private javax.swing.JPanel pIdDocument;
-    private javax.swing.JPanel pIdDocument4;
-    private javax.swing.JPanel pIdDocument5;
     private javax.swing.JPanel pName;
     private javax.swing.JPanel pRole;
     private javax.swing.JPanel pSalary;
