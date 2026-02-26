@@ -8,25 +8,36 @@ package com.mycompany.techsoft_employees;
  *
  * @author santi
  */
+
 public class Employee {
-    
+
     private int idEmployee; 
     private int idDocument; 
     private String name;
     private int age;
     private String role;
     private double salary;
-    private String StartDate;
-    
-    public Employee(int idEmployee, int idDocument, String name, int age, String role, double salary, String StartDate){
-        
-        this.idEmployee =  idEmployee;
+    private String startDate;
+
+    // Constructor SIN id (para insertar en BD)
+    public Employee(int idDocument, String name, int age, String role, double salary, String startDate) {
         this.idDocument = idDocument;
         this.name = name;
         this.age = age;
         this.role = role;
         this.salary = salary;
-        this.StartDate = StartDate;
+        this.startDate = startDate;
+    }
+
+    // Constructor CON id (para cuando lees desde BD)
+    public Employee(int idEmployee, int idDocument, String name, int age, String role, double salary, String startDate) {
+        this.idEmployee = idEmployee;
+        this.idDocument = idDocument;
+        this.name = name;
+        this.age = age;
+        this.role = role;
+        this.salary = salary;
+        this.startDate = startDate;
     }
 
     public int getIdEmployee() {
@@ -78,26 +89,27 @@ public class Employee {
     }
 
     public String getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
-    public void setStartDate(String StartDate) {
-        this.StartDate = StartDate;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
-    
+
     public String showBasicInfo() {
-        return "Name:" + getName()+
-                "Document:" + getIdDocument()+
-                "Age:"+ getAge();
+        return "Name: " + name + "\n" +
+               "Document: " + idDocument + "\n" +
+               "Age: " + age;
     }
-    
-    public String showInfo(){
-        return "Name:" + getName()+
-                "Document:" + getIdDocument()+
-                "idEmployee:" + getIdEmployee()+
-                "Salary:"+ getSalary()+
-                "Role:" + getRole()+
-                "Startdate:" + getStartDate();
+
+    public String showInfo() {
+        return "Employee ID: " + idEmployee + "\n" +
+               "Name: " + name + "\n" +
+               "Document: " + idDocument + "\n" +
+               "Age: " + age + "\n" +
+               "Role: " + role + "\n" +
+               "Salary: $" + salary + "\n" +
+               "Start Date: " + startDate;
     }
-    
 }
+
